@@ -41,7 +41,16 @@ function blau () {
 let comptador = 0
 let temps = 0
 basic.forever(function () {
+    if (input.soundLevel() > 140) {
+        if (comptador == 0) {
+            temps = 0
+        }
+        comptador = comptador + 1
+    }
     if (temps == 14) {
+        if (comptador != 0) {
+            basic.showNumber(comptador)
+        }
         if (comptador == 1) {
             vermell()
         }
@@ -67,21 +76,6 @@ basic.forever(function () {
         temps = 0
     }
 })
-basic.forever(function () {
-    if (input.soundLevel() > 140) {
-        if (comptador == 0) {
-            temps = 0
-        }
-        comptador = comptador + 1
-    }
-    if (temps > 14) {
-        if (comptador == 0) {
-            basic.showNumber(comptador)
-        }
-        temps = 0
-        comptador = 0
-    }
-})
 loops.everyInterval(100, function () {
-    temps = comptador + 1
+    temps = temps + 1
 })
